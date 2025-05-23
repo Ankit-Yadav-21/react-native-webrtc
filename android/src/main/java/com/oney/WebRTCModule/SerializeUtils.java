@@ -153,8 +153,9 @@ public class SerializeUtils {
             if (encoding.maxFramerate != null) {
                 encodingMap.putInt("maxFramerate", encoding.maxFramerate);
             }
+            Double scaleResolutionDownBy = 1.0;
             if (encoding.scaleResolutionDownBy != null) {
-                encodingMap.putDouble("scaleResolutionDownBy", encoding.scaleResolutionDownBy);
+                encodingMap.putDouble("scaleResolutionDownBy", scaleResolutionDownBy);
             }
             encodings.pushMap(encodingMap);
         });
@@ -239,9 +240,7 @@ public class SerializeUtils {
             // Dealing with nullable Integers
             Integer maxBitrate = encodingUpdate.hasKey("maxBitrate") ? encodingUpdate.getInt("maxBitrate") : null;
             Integer maxFramerate = encodingUpdate.hasKey("maxFramerate") ? encodingUpdate.getInt("maxFramerate") : null;
-            Double scaleResolutionDownBy = encodingUpdate.hasKey("scaleResolutionDownBy")
-                    ? encodingUpdate.getDouble("scaleResolutionDownBy")
-                    : null;
+            Double scaleResolutionDownBy = 1.0;
 
             encoding.active = encodingUpdate.getBoolean("active");
             encoding.rid = encodingUpdate.getString("rid");
@@ -297,8 +296,9 @@ public class SerializeUtils {
         if (params.hasKey("maxFramerate")) {
             encoding.maxFramerate = params.getInt("maxFramerate");
         }
+        Double scaleResolutionDownBy = 1.0;
         if (params.hasKey("scaleResolutionDownBy")) {
-            encoding.scaleResolutionDownBy = params.getDouble("scaleResolutionDownBy");
+            encoding.scaleResolutionDownBy = scaleResolutionDownBy;
         }
 
         return encoding;
